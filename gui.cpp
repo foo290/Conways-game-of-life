@@ -154,12 +154,14 @@ void Visualizer::clearCells(uint x, uint y) {
 
 
 GuiManager::GuiManager() {
+    putlog.info("Initializing GUI manager...");
     SDL_Init(SDL_INIT_VIDEO);
     window = SDL_CreateWindow(
             "Conway's Game of Life", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
             SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN
     );
     surface = SDL_GetWindowSurface(window);
+    putlog.info("GUI manager initialized successfully.");
 }
 
 void GuiManager::capFrameRate(uint32_t currentFrameRate, uint fps) {
@@ -186,9 +188,11 @@ void GuiManager::runMainLoop() {
     uint32_t current_framerate;
 
     // Setting visualizer
+    putlog.debug("Setting up visualizer for algorithm.");
     Visualizer v = setVisualizer(surface, CELL_MAP_WIDTH, CELL_MAP_HEIGHT);
+    putlog.debug("Initializing visualizer...");
     v.init();
-
+    putlog.info("Running Mainloop for UI...");
     while (running) {
         // Main window loop
         current_framerate = SDL_GetTicks();
@@ -202,9 +206,10 @@ void GuiManager::runMainLoop() {
         capFrameRate(current_framerate, FPS);  // Frame rate cap
         SDL_UpdateWindowSurface(window);
     }
-
+    putlog.warning("Destroying UI window...");
     SDL_DestroyWindow(window);
     SDL_Quit();
+    putlog.info("Program exits gracefully. :)");
 }
 
 

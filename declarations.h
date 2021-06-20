@@ -1,6 +1,7 @@
 //
 // Created by linuxpanda on 20/06/21.
 //
+#include "Logger.h"
 
 class Configs {
 public:
@@ -11,6 +12,7 @@ public:
 
     uint SCREEN_WIDTH = CELL_MAP_WIDTH * CELL_SIZE;
     uint SCREEN_HEIGHT = CELL_MAP_HEIGHT * CELL_SIZE;
+    Logger putlog;
 };
 
 class Visualizer : public Configs {
