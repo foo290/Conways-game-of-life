@@ -84,7 +84,7 @@ void Visualizer::drawCells(uint x, uint y, uint red, uint green, uint blue) {
 
 void Visualizer::setCells(uint x, uint y) {
     u_char *cell_ptr = cells + (y * w) + x;
-    uint xleft, xright, yabove, ybelow;
+    int xleft, xright, yabove, ybelow;
 
     *(cell_ptr) |= 0x01;
     if (x == 0)
@@ -119,7 +119,7 @@ void Visualizer::setCells(uint x, uint y) {
 
 void Visualizer::clearCells(uint x, uint y) {
     u_char *cell_ptr = cells + (y * w) + x;
-    uint xleft, xright, yabove, ybelow;
+    int xleft, xright, yabove, ybelow;
 
     *(cell_ptr) &= ~0x01;
     if (x == 0)
