@@ -183,6 +183,10 @@ Visualizer GuiManager::setVisualizer(SDL_Surface *s, uint mapWidth, uint mapHeig
     return v;
 }
 
+void GuiManager::setFps(int fps) {
+    FPS = fps;
+}
+
 void GuiManager::runMainLoop() {
     bool running = true;
     uint32_t current_framerate;
@@ -191,6 +195,8 @@ void GuiManager::runMainLoop() {
     putlog.debug("Setting up visualizer for algorithm.");
     Visualizer v = setVisualizer(surface, CELL_MAP_WIDTH, CELL_MAP_HEIGHT);
     putlog.debug("Initializing visualizer...");
+    putlog.info("Current fps is set to : ", false);
+    putlog.info(FPS, false, true);
     v.init();
     putlog.info("Running Mainloop for UI...");
     while (running) {

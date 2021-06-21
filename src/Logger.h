@@ -23,7 +23,7 @@ private:
     std::string r = "[";
     std::string l = "] : ";
     std::string timestamp = ctime(&timetoday);
-    std::string logTimeFormat = r + timestamp.erase(timestamp.length()-1) + l;
+    std::string logTimeFormat = r + timestamp.erase(timestamp.length() - 1) + l;
 
 
     std::string _info = noColor + green + "[INFO] " + logTimeFormat;
@@ -33,34 +33,47 @@ private:
     std::string _critical = noColor + orange + "[CRITICAL] " + logTimeFormat;
 
     template<typename T>
-    void print(T msg, const std::string& type){
-        std::cout<<type<<msg<<std::endl;
+    void println(T msg, const std::string &type) {
+        std::cout << type << msg << std::endl;
     }
+
+    template<typename T>
+    void print(T msg, const std::string &type) {
+        std::cout << type << msg;
+    }
+
+    template<typename T>
+    void printRawLn(T msg) {
+        std::cout << msg << std::endl;
+    }
+
 public:
 
     template<typename T>
-    void info(T msg){
-        print(msg, _info);
+    void info(T msg, bool nextln = true, bool raw = false) {
+        if (nextln) println(msg, _info);
+        else if (raw) printRawLn(msg);
+        else print(msg, _info);
     }
 
     template<typename T>
-    void debug(T msg){
-        print(msg, _debug);
+    void debug(T msg) {
+        println(msg, _debug);
     }
 
     template<typename T>
-    void warning(T msg){
-        print(msg, _warn);
+    void warning(T msg) {
+        println(msg, _warn);
     }
 
     template<typename T>
-    void error(T msg){
-        print(msg, _error);
+    void error(T msg) {
+        println(msg, _error);
     }
 
     template<typename T>
-    void critical(T msg){
-        print(msg, _critical);
+    void critical(T msg) {
+        println(msg, _critical);
     }
 
 };

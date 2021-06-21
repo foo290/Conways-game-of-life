@@ -5,7 +5,7 @@
 
 class Configs {
 public:
-    uint FPS = 60;
+    uint FPS = 30;
     uint CELL_SIZE = 5;
     uint CELL_MAP_WIDTH = 300;
     uint CELL_MAP_HEIGHT = 150;
@@ -56,6 +56,8 @@ public:
     SDL_Window *getWindow();
 
     SDL_Surface *getSurface();
+
+    void setFps(int fps);
 
     void runMainLoop();
 
