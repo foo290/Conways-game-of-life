@@ -5,14 +5,18 @@
 
 class Configs {
 public:
-    uint FPS = 30;
-    uint CELL_SIZE = 5;
+    uint FPS = 30;  // This represents the spreed of the algorithm, default is 30 FPS
+
+    // The three variables below will determine the screen size
+    uint CELL_SIZE = 5;  // This represents the width and the height of a cell in pixels
     uint CELL_MAP_WIDTH = 300;
     uint CELL_MAP_HEIGHT = 150;
 
+    // window width and height
     uint SCREEN_WIDTH = CELL_MAP_WIDTH * CELL_SIZE;
     uint SCREEN_HEIGHT = CELL_MAP_HEIGHT * CELL_SIZE;
-    Logger putlog;
+
+    Logger putlog;  // For logging the necessary stuffs on console.
 };
 
 class Visualizer : public Configs {
